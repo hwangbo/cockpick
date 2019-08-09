@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Bar, Blog
+from .models import Bar, Blog, Cock
 from .forms import BlogPost
 from django.utils import timezone
 from django.core.paginator import Paginator
