@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Bar, Blog, Cock
+from .models import Bar, Blog
 from .forms import BlogPost
 from django.utils import timezone
 from django.core.paginator import Paginator
+import requests
+
 
 # Create your views here.
 def home(request):
@@ -52,5 +54,22 @@ def blogpost(request):
         return render(request,'new.html',{'form':form})
 
 def cock(request):
-    cocks = Cock.objects
-    return render(request, 'cock.html', {'cocks':cocks})
+        url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a"
+        data = requests.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a").json()
+
+        drinkdata = data["drinks"]
+        
+        cocks = {}
+        i = 0
+        for cocktail in drinkdata:
+                cocks[i] = [cocktail["strDrink"], cocktail["strAlcoholic"], cocktail["strDrinkThumb"]]
+                i+=1
+
+        '''for cocktail in drinkdata:
+                cocks = {
+                "name" : cocktail["strDrink"],
+                "alc" : cocktail["strAlcoholic"],
+                "img" : cocktail["strDrinkThumb"]
+                }
+        '''
+        return render(request, 'cock.html', {'cocks':cocks})
