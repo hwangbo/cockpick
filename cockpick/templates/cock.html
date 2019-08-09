@@ -5,20 +5,17 @@
     <main role="main">
 	      <div class="container">
     	  <div class="row">
-    	  {% for cock in cocks.all %}
-    	    <div class="col-md-4">
-    	      <div class="card mb-4 shadow-sm">
-    	        <img class="card-img-top" src="{{ cock.image.url }}" alt=" Card image cap">
-    	        <div class="card-body">
-    	          <h4>{{ cock.title }}</h4>
-				  <br>
-				  <h6 class="card-subtitle mb-2 text-muted">구성요소</h6>
-				  <p class="card-text">{{ cock.component }}</p>
-				  <h6 class="card-subtitle mb-2 text-muted">특징</h6>
-    	          <p class="card-text">{{ cock.description }}</p>
-    	        </div>
-    	      </div>
-    	    </div>
+    	  {% for cocks in cocks.values %}
+				<div class="col-md-4">
+				<div class="card mb-4 shadow-sm">
+					<img class="card-img-top" src="{{ cocks.2 }}" alt=" Card image cap">
+					<div class="card-body">
+					<h4>{{ cocks.0 }}</h4>
+					<h4>{{ cocks.1 }}</h4>
+					<br>
+					</div>
+				</div>
+				</div>
         {% endfor %}
         </div>
       </div>
