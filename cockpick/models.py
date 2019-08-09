@@ -5,6 +5,8 @@ class Bar(models.Model):
     title = models.CharField(max_length=255, default='null')
     image = models.ImageField(upload_to='images/')
     description = models.CharField(max_length=500)
+    posit = models.CharField(max_length=500, default='null')
+    url = models.CharField(max_length=500, default='null')
     centerx = models.CharField(max_length=255, default = '37.3595704')
     centery = models.CharField(max_length=255, default = '127.105399')
 

@@ -11,9 +11,11 @@
     	        <img class="card-img-top" src="{{ bar.image.url }}" alt=" Card image cap">
     	        <div class="card-body">
     	          <h4>{{ bar.title }}</h4>
-				  <br>
-				  <h6 class="card-subtitle mb-2 text-muted">위치</h6>
+                <br>
+                <h6 class="card-subtitle mb-2 text-muted">특징</h6>
     	          <p class="card-text">{{ bar.description }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">위치</h6>
+    	          <p class="card-text">{{ bar.posit }}</p>
                   <a href="{% url 'bard' bar.id %}" class="card-link">Card link</a>
     	        </div>
     	      </div>
