@@ -54,22 +54,26 @@ def blogpost(request):
         return render(request,'new.html',{'form':form})
 
 def cock(request):
-        url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a"
-        data = requests.get("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a").json()
+        first_letter = "a"
+        url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=" + first_letter                
+        data = requests.get(url).json()
 
         drinkdata = data["drinks"]
         
         cocks = {}
         i = 0
         for cocktail in drinkdata:
-                cocks[i] = [cocktail["strDrink"], cocktail["strAlcoholic"], cocktail["strDrinkThumb"]]
+                arrayI = []
+                arrayM = []
+                for j in range(1, 16):
+                        s = "%d" % (j)
+                        k = "strIngredient" + s
+                        l = "strMeasure" + s
+                        if(cocktail[k] is None):
+                                break
+                        else:
+                                arrayI.append(cocktail[k])
+                                arrayM.append(cocktail[l])
+                cocks[i] = [cocktail["strDrink"], cocktail["strAlcoholic"], cocktail["strDrinkThumb"],arrayI,arrayM]
                 i+=1
-
-        '''for cocktail in drinkdata:
-                cocks = {
-                "name" : cocktail["strDrink"],
-                "alc" : cocktail["strAlcoholic"],
-                "img" : cocktail["strDrinkThumb"]
-                }
-        '''
         return render(request, 'cock.html', {'cocks':cocks})
