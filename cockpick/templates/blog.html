@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class='container'>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col" class="text-white">#</th>
+                <th scope="col" class="text-white">제목</th>
+                <th scope="col" class="text-white">작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for blog in posts %}
+                <tr>
+                <th scope="row" class="text-white">{{blog.id}}</th>
+                <td><a href="{% url 'detail' blog.id %}">{{blog.title}}</td>
+                <td class="text-white">{{blog.pub_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if posts.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{posts.previous_page_number}}">Previous</a>
+        {% endif %}
+    
+        <span class="text-white">{{posts.number}}</span>
+        <span class="text-white">of</span>
+        <span class="text-white">{{posts.paginator.num_pages}}</span>
+    
+        {% if posts.has_next %}
+        <a href="?page={{posts.next_page_number}}">Next</a>
+        <a href="?page={{posts.paginator.num_pages}}">Last</a>
+        {% endif %}
+        <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'new' %}'">글쓰기</button>
+    </div>
+{% endblock %}
