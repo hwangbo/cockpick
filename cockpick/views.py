@@ -53,9 +53,9 @@ def blogpost(request):
         form = BlogPost()
         return render(request,'new.html',{'form':form})
 
-def cock(request):
-        first_letter = "a"
-        url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=" + first_letter                
+def cock(request, first_letter):
+        pk = first_letter
+        url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=" + pk                
         data = requests.get(url).json()
 
         drinkdata = data["drinks"]
@@ -65,6 +65,10 @@ def cock(request):
         for cocktail in drinkdata:
                 arrayI = []
                 arrayM = []
+                if(cocktail["strAlcoholic"] == "Alcoholic"):
+                        cocktail["strAlcoholic"] = "술이 들어감"
+                else:
+                        cocktail["strAlcoholic"] = "술이 들어가지 않음"
                 for j in range(1, 16):
                         s = "%d" % (j)
                         k = "strIngredient" + s
