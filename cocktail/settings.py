@@ -122,7 +122,6 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'cockpick', 'static'),
-    os.path.join(BASE_DIR, 'cock', 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
