@@ -1,1 +1,1 @@
-web: gunicorn cocktail.wsgi --log-file -
+web: gunicorn cockpick.wsgi --log-file -
