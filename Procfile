@@ -1,0 +1,1 @@
+web: gunicorn cockpick.wsgi --log-file -
